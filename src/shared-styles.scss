@@ -1,0 +1,44 @@
+$nav-text-font-size: 16px !global;
+$subheading1-font-size: 28px !global;
+$subheading2-font-size: 14px !global;
+
+$black-color: #0b0d17 !global;
+$light-color: #d0d6f9 !global;
+$white-color: #ffffff !global;
+
+h1 {
+  font-size: 150px;
+  margin: 10px 0px 10px;
+}
+
+h2 {
+  font-size: 100px;
+}
+
+h3 {
+  font-size: 56px;
+}
+
+h4 {
+  font-size: 32px;
+}
+
+h5 {
+  font-size: 28px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: normal;
+  font-family: "Bellefair Regular";
+}
+
+h5,
+span,
+p {
+  font-weight: normal;
+  font-family: "Bellefair Condensed Regular";
+  color: $light-color;
+}

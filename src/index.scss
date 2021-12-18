@@ -1,9 +1,12 @@
+@import "shared-styles";
+
 * {
   box-sizing: inherit;
 }
 
 html {
   box-sizing: border-box;
+  color: $white-color;
 }
 
 body {
@@ -16,7 +19,9 @@ body {
 }
 
 #root {
-  height: 100vh;
+  // height: 100vh;
+  height: 900px;
+  width: 1440px;
 }
 
 code {

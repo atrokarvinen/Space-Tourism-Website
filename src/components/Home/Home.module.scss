@@ -1,4 +1,46 @@
+@import "../../shared-styles";
+
 .home {
   height: 100%;
   background-color: pink;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "intro exploreButton";
+
+  align-items: center;
+  justify-items: center;
+
+  // padding: 100px;
+
+  .intro {
+    grid-area: intro;
+
+    max-width: 450px;
+
+    p {
+      text-align: justify;
+    }
+  }
+
+  .exploreButton {
+    grid-area: exploreButton;
+
+    // align-self: center;
+    // justify-self: center;
+
+    $radius: 200px;
+    height: $radius;
+    width: $radius;
+
+    border-radius: 50%;
+    background-color: $white-color;
+
+    transition: linear 0.2s;
+  }
+
+  .exploreButton:hover {
+    transform: scale(150%);
+  }
 }
