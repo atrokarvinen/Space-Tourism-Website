@@ -1,5 +1,5 @@
 import { SpaceTourismData } from "../models/SpaceTourismData";
-import dataJson from "../../starter-code/data.json";
+import dataJson from "./data.json";
 
 export class DataProvider {
   getSpaceTourismData(): SpaceTourismData {

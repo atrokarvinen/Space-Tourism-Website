@@ -9,6 +9,7 @@ import Home from "./components/Home/Home";
 import Technology from "./components/Technology/Technology";
 import Navigation from "./components/Navigation/Navigation";
 import NavigationOption from "./components/Navigation/NavigationOption";
+import { DataProvider } from "./services/DataProvider";
 
 export default function Router() {
   const homeLink = "/";
@@ -35,7 +36,7 @@ export default function Router() {
     }
   };
 
-  const bgUrl = getBackgroundImageUrl(locationPath);
+  const bgUrl = getBackgroundImageUrl("/" + locationPath.split("/")[0]);
 
   const navOptions: NavigationOption[] = [
     { label: "HOME", linkPath: homeLink },
@@ -44,15 +45,23 @@ export default function Router() {
     { label: "TECHNOLOGY", linkPath: technologyLink },
   ];
 
+  const spaceDataProvider = new DataProvider();
+  const spaceData = spaceDataProvider.getSpaceTourismData();
+
   return (
     <div className={style.layout} style={{ backgroundImage: `url(${bgUrl}` }}>
       <Navigation options={navOptions} />
-      <Routes>
-        <Route path={homeLink} element={Home({})} />
-        <Route path={destinationLink} element={Destination({})} />
-        <Route path={crewLink} element={Crew({})} />
-        <Route path={technologyLink} element={Technology({})} />
-      </Routes>
+      <div className={style.content}>
+        <Routes>
+          <Route path={homeLink} element={Home({})} />
+          <Route
+            path={destinationLink + "/*"}
+            element={Destination({ destinations: spaceData.destinations })}
+          />
+          <Route path={crewLink} element={Crew({})} />
+          <Route path={technologyLink} element={Technology({})} />
+        </Routes>
+      </div>
     </div>
   );
 }

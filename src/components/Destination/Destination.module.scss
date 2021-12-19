@@ -1,0 +1,59 @@
+@import "../../shared-styles.scss";
+
+.destination {
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 20% 80%;
+  grid-template-areas:
+    "caption ."
+    "destinationImage destinations";
+}
+
+.caption {
+  grid-area: caption;
+}
+
+.destinationImage {
+  grid-area: destinationImage;
+
+  height: 100%;
+
+  justify-self: start;
+  align-self: center;
+}
+
+.destinations {
+  grid-area: destinations;
+
+  height: 100%;
+  width: 60%;
+
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+
+  * {
+    flex: 1;
+  }
+
+  p {
+    text-align: justify;
+  }
+
+  .separationLine {
+    border-bottom: 1px solid gray;
+    margin-bottom: 10px;
+  }
+
+  .destinationStatistics {
+    display: grid;
+
+    align-items: center;
+    text-align: center;
+
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}

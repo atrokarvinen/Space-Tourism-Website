@@ -1,6 +1,6 @@
 import { Image } from "./Image";
 
-export interface CrewMember {
+export interface CrewMemberType {
   name: string;
   images: Image;
   role: string;

@@ -1,9 +1,9 @@
-import { CrewMember } from "./CrewMember";
-import { Destination } from "./Destination";
-import { Technology } from "./Technology";
+import { CrewMemberType } from "./CrewMemberType";
+import { DestinationType } from "./DestinationType";
+import { TechnologyType } from "./TechnologyType";
 
 export interface SpaceTourismData {
-  destinations: Destination[];
-  crew: CrewMember[];
-  technology: Technology[];
+  destinations: DestinationType[];
+  crew: CrewMemberType[];
+  technology: TechnologyType[];
 }

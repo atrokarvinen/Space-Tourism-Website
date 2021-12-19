@@ -1,6 +1,6 @@
 import { Image } from "./Image";
 
-export interface Destination {
+export interface DestinationType {
   name: string;
   images: Image;
   description: string;
