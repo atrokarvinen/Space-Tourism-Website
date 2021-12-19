@@ -1,0 +1,69 @@
+@import "../../shared-styles.scss";
+
+.header {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+
+  $headerPadding: 40px;
+  padding: $headerPadding 0px 0px $headerPadding;
+
+  width: 100%;
+}
+
+.starImage {
+  $star-image-size: 40px;
+  width: $star-image-size;
+  height: $star-image-size;
+
+  align-self: center;
+  justify-self: center;
+}
+
+.navigation {
+  height: 100px;
+  width: 70%;
+
+  backdrop-filter: blur(35px);
+
+  ul {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+
+    display: flex;
+    justify-content: space-evenly;
+
+    li {
+      height: calc(100% - 5px);
+
+      display: flex;
+      align-items: center;
+
+      box-sizing: content-box;
+    }
+
+    li:hover {
+      border-bottom: 5px solid gray;
+    }
+
+    li.active,
+    li.active:hover {
+      border-bottom: 5px solid $white-color;
+    }
+
+    span {
+      font-size: 20px;
+      color: $white-color;
+    }
+
+    .linkNumber {
+      font-weight: bold;
+    }
+
+    .linkLabel {
+      margin-left: 10px;
+    }
+  }
+}
