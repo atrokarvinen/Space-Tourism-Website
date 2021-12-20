@@ -7,19 +7,43 @@ import NavigationOption from "../NavigationOption";
 
 interface LinkItemProps {
   link: NavigationOption;
-  index: number;
+  index?: number;
 }
 
 export default function LinkItem({ link, index }: LinkItemProps): ReactElement {
   const location = useLocation();
   const { pathname } = location;
 
-  const isActive = pathname === link.linkPath;
+  console.log(pathname)
+
+  const isHomePage = link.linkPath === "/";
+  const exactlyMatches = link.linkPath === pathname;
+  const isActive =
+    (isHomePage && exactlyMatches) ||
+    (!isHomePage && pathname.includes(link.linkPath));
   const activeClassNameExt = isActive ? style.active : undefined;
+
+  const applyZeroPadding = (number: number): string => {
+    if (number < 10) {
+      return `0${number}`;
+    }
+    return number.toString();
+  };
+
+  const displayLinkNumber = (): JSX.Element | null => {
+    if (index !== undefined) {
+      return (
+        <span className={style.linkNumber}>{applyZeroPadding(index)}</span>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <li className={activeClassNameExt}>
       <Link to={link.linkPath}>
-        <span className={style.linkNumber}>0{index}</span>
+        {displayLinkNumber()}
         <span className={style.linkLabel}>{link.label}</span>
       </Link>
     </li>

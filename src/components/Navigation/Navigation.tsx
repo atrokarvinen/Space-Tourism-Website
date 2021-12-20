@@ -7,19 +7,26 @@ import NavigationOption from "./NavigationOption";
 
 interface NavigationProps {
   options: NavigationOption[];
+  displayIndex?: boolean;
 }
 
-export default function Navigation({ options }: NavigationProps): ReactElement {
+export default function Navigation({
+  options,
+  displayIndex,
+}: NavigationProps): ReactElement {
   return (
-    <div className={style.header}>
-      <img className={style.starImage} src="star" alt="star logo" />
-      <nav className={style.navigation}>
-        <ul>
-          {options.map((link, index) => {
-            return <LinkItem key={link.label} link={link} index={index} />;
-          })}
-        </ul>
-      </nav>
-    </div>
+    <nav className={style.navigation}>
+      <ul>
+        {options.map((link, index) => {
+          return (
+            <LinkItem
+              key={link.label}
+              link={link}
+              index={displayIndex ? index : undefined}
+            />
+          );
+        })}
+      </ul>
+    </nav>
   );
 }

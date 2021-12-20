@@ -1,11 +1,18 @@
 import style from "./Destination.module.scss";
 
-import React, { ReactElement } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import React, { ReactElement, useState } from "react";
+import {
+  Location,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 
 import { DestinationType } from "../../models/DestinationType";
 import Navigation from "../Navigation/Navigation";
 import NavigationOption from "../Navigation/NavigationOption";
+import { getLastLink } from "../../services/RouteHelper";
 
 interface DestinationProps {
   destinations: DestinationType[];
@@ -14,9 +21,18 @@ interface DestinationProps {
 export default function Destination({
   destinations,
 }: DestinationProps): ReactElement {
+  const [refresh, setRefresh] = useState(false);
+
   const defaultDestination = destinations[0];
   const defaultName = defaultDestination.name.toLowerCase();
-  const { images } = defaultDestination;
+
+  const selectedDestinationName = getLastLink(useLocation().pathname);
+  const selectedDestination = destinations.find(
+    (destination) => destination.name.toLowerCase() === selectedDestinationName
+  );
+
+  const currentDestination = selectedDestination ?? defaultDestination;
+  const { images } = currentDestination;
 
   const navOptions: NavigationOption[] = destinations.map((destination) => {
     return {
@@ -26,17 +42,20 @@ export default function Destination({
   });
 
   // console.log(`destination pathname: ${pathname}`);
+  const trimmedImagePath = images.png.replace('.', '');
 
   return (
     <div className={style.destination}>
-      <h4 className={style.caption}>01 PICK YOUR DESTINATION</h4>
+      <h4 className={style.caption} onClick={() => {setRefresh(!refresh)}}>01 PICK YOUR DESTINATION</h4>
       <img
         className={style.destinationImage}
-        src={images.png}
+        src={trimmedImagePath}
         alt="destination planet"
       />
       <div className={style.destinations}>
-        <Navigation options={navOptions} />
+        <div className={style.navigation}>
+          <Navigation options={navOptions} />
+        </div>
         <Routes>
           {destinations.map((destination) => {
             const { name, description, distance, travel } = destination;

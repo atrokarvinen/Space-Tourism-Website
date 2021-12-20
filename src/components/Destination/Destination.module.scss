@@ -28,14 +28,14 @@
   grid-area: destinations;
 
   height: 100%;
-  width: 60%;
+  width: 80%;
 
   display: flex;
   flex-direction: column;
   align-content: space-around;
 
-  * {
-    flex: 1;
+  .navigation {
+    height: 50px;
   }
 
   p {

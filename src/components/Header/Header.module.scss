@@ -1,0 +1,30 @@
+@import "../../shared-styles.scss";
+
+.header {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  align-items: center;
+
+  $headerPadding: 40px;
+  padding: $headerPadding 0px 0px $headerPadding;
+
+}
+
+.starImage {
+  $star-image-size: 60px;
+  width: $star-image-size;
+  height: $star-image-size;
+}
+
+.navigation {
+  height: 100px;
+  width: 70%;
+  padding: 0px 100px;
+
+
+  backdrop-filter: blur(35px);
+}

@@ -1,39 +1,17 @@
 @import "../../shared-styles.scss";
 
-.header {
-  display: flex;
-  flex-direction: row;
-
-  justify-content: space-between;
-
-  $headerPadding: 40px;
-  padding: $headerPadding 0px 0px $headerPadding;
-
-  width: 100%;
-}
-
-.starImage {
-  $star-image-size: 40px;
-  width: $star-image-size;
-  height: $star-image-size;
-
-  align-self: center;
-  justify-self: center;
-}
-
 .navigation {
-  height: 100px;
-  width: 70%;
-
-  backdrop-filter: blur(35px);
+  height: 100%;
+  width: 100%;
 
   ul {
     height: 100%;
     width: 100%;
     margin: 0;
+    padding: 0;
 
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 
     li {
       height: calc(100% - 5px);
@@ -53,6 +31,10 @@
       border-bottom: 5px solid $white-color;
     }
 
+    a {
+      text-decoration: none;
+    }
+
     span {
       font-size: 20px;
       color: $white-color;
@@ -60,10 +42,10 @@
 
     .linkNumber {
       font-weight: bold;
+      margin-right: 10px;
     }
 
     .linkLabel {
-      margin-left: 10px;
     }
   }
 }

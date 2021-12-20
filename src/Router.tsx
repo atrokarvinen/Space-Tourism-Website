@@ -1,15 +1,14 @@
 import style from "./Router.module.scss";
 
-import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import Crew from "./components/Crew/Crew";
 import Destination from "./components/Destination/Destination";
 import Home from "./components/Home/Home";
 import Technology from "./components/Technology/Technology";
-import Navigation from "./components/Navigation/Navigation";
 import NavigationOption from "./components/Navigation/NavigationOption";
 import { DataProvider } from "./services/DataProvider";
+import Header from "./components/Header/Header";
 
 export default function Router() {
   const homeLink = "/";
@@ -35,7 +34,7 @@ export default function Router() {
     }
   };
 
-  const bgUrl = getBackgroundImageUrl("/" + locationPath.split("/")[0]);
+  const bgUrl = getBackgroundImageUrl("/" + locationPath.split("/")[1]);
 
   const navOptions: NavigationOption[] = [
     { label: "HOME", linkPath: homeLink },
@@ -49,7 +48,7 @@ export default function Router() {
 
   return (
     <div className={style.layout} style={{ backgroundImage: `url(${bgUrl}` }}>
-      <Navigation options={navOptions} />
+      <Header options={navOptions} />
       <div className={style.content}>
         <Routes>
           <Route path={homeLink} element={Home({})} />

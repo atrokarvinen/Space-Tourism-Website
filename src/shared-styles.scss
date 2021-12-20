@@ -1,11 +1,14 @@
-$nav-text-font-size: 16px !global;
+@import url("https://fonts.googleapis.com/css2?family=Bellefair&display=swap");
 
-$font-family-regular: "Bellefair Regular";
-$font-family-condensed: "Bellefair Condensed Regular";
+$nav-text-font-size: 16px;
+$black-color: #0b0d17;
+$light-color: #d0d6f9;
+$white-color: #ffffff;
 
-$black-color: #0b0d17 !global;
-$light-color: #d0d6f9 !global;
-$white-color: #ffffff !global;
+// $font-family-regular: "Bellefair Regular";
+$font-family-regular: "Bellefair", serif;
+// $font-family-regular: "Bellefair Regular Condensed";
+$font-family-condensed: "Bellefair", serif;
 
 h1 {
   font-size: 150px;
@@ -26,8 +29,8 @@ h4 {
 }
 
 h5 {
-  font-size: 28px;
-  letter-spacing: 4.75px;
+  font-size: 26px;
+  letter-spacing: 3px;
 }
 
 h1,
@@ -47,6 +50,7 @@ p {
 }
 
 p {
+  font-size: 20px;
   line-height: 25px;
 }
 
