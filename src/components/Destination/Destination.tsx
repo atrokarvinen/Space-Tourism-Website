@@ -1,7 +1,7 @@
 import style from "./Destination.module.scss";
 
 import React, { ReactElement } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import { DestinationType } from "../../models/DestinationType";
 import Navigation from "../Navigation/Navigation";
@@ -14,20 +14,18 @@ interface DestinationProps {
 export default function Destination({
   destinations,
 }: DestinationProps): ReactElement {
-  const location = useLocation();
-  const { pathname } = location;
-
-  const selectedDestination = destinations[0];
-  const { images } = selectedDestination;
+  const defaultDestination = destinations[0];
+  const defaultName = defaultDestination.name.toLowerCase();
+  const { images } = defaultDestination;
 
   const navOptions: NavigationOption[] = destinations.map((destination) => {
     return {
       label: destination.name.toUpperCase(),
-      linkPath: `/destination/${destination.name}`,
+      linkPath: `${destination.name.toLowerCase()}`,
     };
   });
 
-  console.log(`destination pathname: ${pathname}`);
+  // console.log(`destination pathname: ${pathname}`);
 
   return (
     <div className={style.destination}>
@@ -40,34 +38,36 @@ export default function Destination({
       <div className={style.destinations}>
         <Navigation options={navOptions} />
         <Routes>
-          <Route path="/destination/Moon" element={<div>Moon</div>} />
-          <Route path="/destination/Mars" element={<div>Mars</div>} />
-          <Route path="/destination/Europa" element={<div>Europa</div>} />
-          <Route path="/destination/Titan" element={<div>Titan</div>} />
-          {/* {destinations.map((destination) => {
+          {destinations.map((destination) => {
             const { name, description, distance, travel } = destination;
             return (
               <Route
                 key={destination.name}
-                path={`${pathname}/${destination.name}`}
-              >
-                <h2>{name.toUpperCase()}</h2>
-                <p>{description}</p>
-                <div className={style.separationLine} />
+                path={`${destination.name.toLowerCase()}`}
+                element={
+                  <>
+                    <h2>{name.toUpperCase()}</h2>
+                    <p>{description}</p>
+                    <div className={style.separationLine} />
 
-                <div className={style.destinationStatistics}>
-                  <span className={style.subHeading2}>AVG. DISTANCE</span>
-                  <span className={style.subHeading2}>EST. TRAVEL TIME</span>
-                  <span className={style.subHeading1}>
-                    {distance.toUpperCase()}
-                  </span>
-                  <span className={style.subHeading1}>
-                    {travel.toUpperCase()}
-                  </span>
-                </div>
-              </Route>
-            ); */}
-          {/* })} */}
+                    <div className={style.destinationStatistics}>
+                      <span className={style.subHeading2}>AVG. DISTANCE</span>
+                      <span className={style.subHeading2}>
+                        EST. TRAVEL TIME
+                      </span>
+                      <span className={style.subHeading1}>
+                        {distance.toUpperCase()}
+                      </span>
+                      <span className={style.subHeading1}>
+                        {travel.toUpperCase()}
+                      </span>
+                    </div>
+                  </>
+                }
+              ></Route>
+            );
+          })}
+          <Route path="*" element={<Navigate to={`${defaultName}`} />} />
         </Routes>
       </div>
     </div>

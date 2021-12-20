@@ -19,7 +19,6 @@ export default function Router() {
 
   const location = useLocation();
   const locationPath = location.pathname;
-  console.log(`locationPath: ${locationPath}`);
 
   const getBackgroundImageUrl = (location: string): string | undefined => {
     switch (location) {
