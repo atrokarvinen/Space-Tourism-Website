@@ -1,13 +1,7 @@
 import style from "./Destination.module.scss";
 
 import React, { ReactElement, useState } from "react";
-import {
-  Location,
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import { DestinationType } from "../../models/DestinationType";
 import Navigation from "../Navigation/Navigation";
@@ -42,11 +36,18 @@ export default function Destination({
   });
 
   // console.log(`destination pathname: ${pathname}`);
-  const trimmedImagePath = images.png.replace('.', '');
+  const trimmedImagePath = images.png.replace(".", "");
 
   return (
     <div className={style.destination}>
-      <h4 className={style.caption} onClick={() => {setRefresh(!refresh)}}>01 PICK YOUR DESTINATION</h4>
+      <h4
+        className={style.caption}
+        onClick={() => {
+          setRefresh(!refresh);
+        }}
+      >
+        01 PICK YOUR DESTINATION
+      </h4>
       <img
         className={style.destinationImage}
         src={trimmedImagePath}
@@ -54,7 +55,7 @@ export default function Destination({
       />
       <div className={style.destinations}>
         <div className={style.navigation}>
-          <Navigation options={navOptions} />
+          <Navigation options={navOptions} linkSymbol="text" />
         </div>
         <Routes>
           {destinations.map((destination) => {

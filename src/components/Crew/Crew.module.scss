@@ -1,0 +1,68 @@
+@import "../../shared-styles.scss";
+
+.crew {
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 20% 80%;
+  grid-template-areas:
+    "caption crewImage"
+    "crewMembers crewImage";
+}
+
+.caption {
+  grid-area: caption;
+}
+
+.crewImage {
+  grid-area: crewImage;
+
+  height: 100%;
+
+  justify-self: start;
+  align-self: center;
+}
+
+.crewMembers {
+  grid-area: crewMembers;
+
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+
+  .navigation {
+    width: 50%;
+  }
+
+  p {
+    text-align: justify;
+    max-width: 500px;
+  }
+
+  .separationLine {
+    border-bottom: 1px solid gray;
+    margin-bottom: 10px;
+  }
+
+  .destinationStatistics {
+    display: grid;
+
+    align-items: center;
+    text-align: center;
+
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+
+.role {
+  color: $gray-color;
+}
+
+.name {
+  margin: 0; 
+}

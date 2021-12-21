@@ -13,11 +13,11 @@ export default function Header({ options }: NavigationProps): ReactElement {
     <div className={style.header}>
       <img
         className={style.starImage}
-        src="./assets/shared/logo.svg"
+        src="/assets/shared/logo.svg"
         alt="star logo"
       />
       <div className={style.navigation}>
-        <Navigation options={options} displayIndex={true}/>
+        <Navigation options={options} displayIndex={true} linkSymbol="text"/>
       </div>
     </div>
   );

@@ -1,0 +1,68 @@
+@import "../../shared-styles.scss";
+
+.technology {
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 20% 80%;
+  grid-template-areas:
+    "caption technologyImage"
+    "technologies technologyImage";
+}
+
+.caption {
+  grid-area: caption;
+}
+
+.technologyImage {
+  grid-area: technologyImage;
+
+  height: 100%;
+
+  justify-self: start;
+  align-self: center;
+}
+
+.technologies {
+  grid-area: technologies;
+
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+
+  .navigation {
+    height: 70%;
+    width: 100px;
+    flex: 0;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0px 50px;
+  }
+
+  p {
+    text-align: justify;
+  }
+
+  .separationLine {
+    border-bottom: 1px solid gray;
+    margin-bottom: 10px;
+  }
+
+  .technologyStatistics {
+    display: grid;
+
+    align-items: center;
+    text-align: center;
+
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}

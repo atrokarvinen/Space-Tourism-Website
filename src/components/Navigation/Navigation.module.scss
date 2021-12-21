@@ -12,24 +12,7 @@
 
     display: flex;
     justify-content: space-between;
-
-    li {
-      height: calc(100% - 5px);
-
-      display: flex;
-      align-items: center;
-
-      box-sizing: content-box;
-    }
-
-    li:hover {
-      border-bottom: 5px solid gray;
-    }
-
-    li.active,
-    li.active:hover {
-      border-bottom: 5px solid $white-color;
-    }
+    list-style-type: none;
 
     a {
       text-decoration: none;
@@ -48,4 +31,74 @@
     .linkLabel {
     }
   }
+}
+
+.textSymbol {
+  height: calc(100% - 5px);
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: content-box;
+}
+
+.textSymbol:hover {
+  border-bottom: 5px solid $gray-color;
+}
+
+.textSymbol.active,
+.textSymbol.active:hover {
+  border-bottom: 5px solid $white-color;
+}
+
+.sliderSymbol {
+  $radius: 20px;
+  width: $radius;
+  height: $radius;
+
+  border-radius: 50%;
+
+  background-color: $dark-gray-color;
+}
+
+.sliderSymbol.active,
+.sliderSymbol.active:hover {
+  background-color: $white-color;
+}
+
+.sliderSymbol:hover {
+  background-color: $gray-color;
+}
+
+.numberedCircleSymbol {
+  $radius: 100px;
+  width: $radius;
+  height: $radius;
+
+  border-radius: 50%;
+
+  border: 1px solid $gray-color;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 40px;
+  font-family: $font-family-regular;
+
+  color: $white-color;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.numberedCircleSymbol.active,
+.numberedCircleSymbol.active:hover {
+  background-color: $white-color;
+  color: $black-color;
+}
+
+.numberedCircleSymbol:hover {
+  border-color: $white-color;
 }

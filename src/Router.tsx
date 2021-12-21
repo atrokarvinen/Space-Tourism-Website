@@ -22,13 +22,13 @@ export default function Router() {
   const getBackgroundImageUrl = (location: string): string | undefined => {
     switch (location) {
       case homeLink:
-        return "./assets/home/background-home-desktop.jpg";
+        return "/assets/home/background-home-desktop.jpg";
       case destinationLink:
-        return "./assets/destination/background-destination-desktop.jpg";
+        return "/assets/destination/background-destination-desktop.jpg";
       case crewLink:
-        return "./assets/crew/background-crew-desktop.jpg";
+        return "/assets/crew/background-crew-desktop.jpg";
       case technologyLink:
-        return "./assets/technology/background-technology-desktop.jpg";
+        return "/assets/technology/background-technology-desktop.jpg";
       default:
         return undefined;
     }
@@ -56,8 +56,14 @@ export default function Router() {
             path={destinationLink + "/*"}
             element={Destination({ destinations: spaceData.destinations })}
           />
-          <Route path={crewLink} element={Crew({})} />
-          <Route path={technologyLink} element={Technology({})} />
+          <Route
+            path={crewLink + "/*"}
+            element={Crew({ crewMembers: spaceData.crew })}
+          />
+          <Route
+            path={technologyLink + "/*"}
+            element={Technology({ technologies: spaceData.technology })}
+          />
         </Routes>
       </div>
     </div>
