@@ -15,26 +15,10 @@
     grid-area: intro;
 
     max-width: 450px;
+    justify-self: left;
 
     p {
       text-align: justify;
     }
-  }
-
-  .exploreButton {
-    grid-area: exploreButton;
-
-    $radius: 200px;
-    height: $radius;
-    width: $radius;
-
-    border-radius: 50%;
-    background-color: $white-color;
-
-    transition: linear 0.2s;
-  }
-
-  .exploreButton:hover {
-    transform: scale(150%);
   }
 }

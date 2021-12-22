@@ -10,10 +10,12 @@ import { TechnologyType } from "../../models/TechnologyType";
 
 interface TechnologyProps {
   technologies: TechnologyType[];
+  setTechTab: (tab: string) => void;
 }
 
 export default function Technology({
   technologies,
+  setTechTab,
 }: TechnologyProps): ReactElement {
   const defaultTechnology = technologies[0];
   const defaultName = convertToValidRoute(defaultTechnology.name);
@@ -27,9 +29,11 @@ export default function Technology({
   const { images } = currentDestination;
 
   const navOptions: NavigationOption[] = technologies.map((tech) => {
+    const validRoute = convertToValidRoute(tech.name);
     return {
       label: tech.name.toUpperCase(),
-      linkPath: `${convertToValidRoute(tech.name)}`,
+      linkPath: validRoute,
+      setSelectedTab: () => setTechTab(validRoute),
     };
   });
 

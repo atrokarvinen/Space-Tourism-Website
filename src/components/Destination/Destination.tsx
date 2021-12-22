@@ -1,22 +1,22 @@
 import style from "./Destination.module.scss";
 
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import { DestinationType } from "../../models/DestinationType";
 import Navigation from "../Navigation/Navigation";
 import NavigationOption from "../Navigation/NavigationOption";
-import { getLastLink } from "../../services/RouteHelper";
+import { convertToValidRoute, getLastLink } from "../../services/RouteHelper";
 
 interface DestinationProps {
   destinations: DestinationType[];
+  setDestinationTab: (tab: string) => void;
 }
 
 export default function Destination({
   destinations,
+  setDestinationTab,
 }: DestinationProps): ReactElement {
-  const [refresh, setRefresh] = useState(false);
-
   const defaultDestination = destinations[0];
   const defaultName = defaultDestination.name.toLowerCase();
 
@@ -29,25 +29,19 @@ export default function Destination({
   const { images } = currentDestination;
 
   const navOptions: NavigationOption[] = destinations.map((destination) => {
+    const validLinkName = convertToValidRoute(destination.name);
     return {
       label: destination.name.toUpperCase(),
-      linkPath: `${destination.name.toLowerCase()}`,
+      linkPath: validLinkName,
+      setSelectedTab: () => setDestinationTab(validLinkName),
     };
   });
 
-  // console.log(`destination pathname: ${pathname}`);
   const trimmedImagePath = images.png.replace(".", "");
 
   return (
     <div className={style.destination}>
-      <h4
-        className={style.caption}
-        onClick={() => {
-          setRefresh(!refresh);
-        }}
-      >
-        01 PICK YOUR DESTINATION
-      </h4>
+      <h4 className={style.caption}>01 PICK YOUR DESTINATION</h4>
       <img
         className={style.destinationImage}
         src={trimmedImagePath}

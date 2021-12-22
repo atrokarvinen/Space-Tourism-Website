@@ -4,7 +4,7 @@
   height: 100%;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 5fr 4fr;
   grid-template-rows: 20% 80%;
   grid-template-areas:
     "caption crewImage"
@@ -35,12 +35,16 @@
   align-content: space-around;
 
   .navigation {
-    width: 50%;
+    flex: 1;
+    width: 300px;
   }
 
   p {
-    text-align: justify;
+    align-self: flex-start;
+    flex: 1 0;
     max-width: 500px;
+    
+    text-align: justify;
   }
 
   .separationLine {

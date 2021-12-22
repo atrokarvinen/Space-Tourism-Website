@@ -1,6 +1,4 @@
-import style from "../../Navigation.module.scss";
-
-import * as React from "react";
+import style from "./LinkSymbolStyles.module.scss";
 
 export interface TextLinkSymbolProps {
   label: string;

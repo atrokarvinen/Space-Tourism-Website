@@ -9,8 +9,13 @@ import Technology from "./components/Technology/Technology";
 import NavigationOption from "./components/Navigation/NavigationOption";
 import { DataProvider } from "./services/DataProvider";
 import Header from "./components/Header/Header";
+import { useState } from "react";
 
 export default function Router() {
+  const [destinationTab, setDestinationTab] = useState<string | undefined>();
+  const [crewTab, setCrewTab] = useState<string | undefined>();
+  const [techTab, setTechTab] = useState<string | undefined>();
+
   const homeLink = "/";
   const destinationLink = "/destination";
   const crewLink = "/crew";
@@ -38,9 +43,13 @@ export default function Router() {
 
   const navOptions: NavigationOption[] = [
     { label: "HOME", linkPath: homeLink },
-    { label: "DESTINATION", linkPath: destinationLink },
-    { label: "CREW", linkPath: crewLink },
-    { label: "TECHNOLOGY", linkPath: technologyLink },
+    {
+      label: "DESTINATION",
+      linkPath: destinationLink,
+      selectedSubTab: destinationTab,
+    },
+    { label: "CREW", linkPath: crewLink, selectedSubTab: crewTab },
+    { label: "TECHNOLOGY", linkPath: technologyLink, selectedSubTab: techTab },
   ];
 
   const spaceDataProvider = new DataProvider();
@@ -51,18 +60,30 @@ export default function Router() {
       <Header options={navOptions} />
       <div className={style.content}>
         <Routes>
-          <Route path={homeLink} element={Home({})} />
+          <Route
+            path={homeLink}
+            element={Home({ exploreButtonLink: destinationLink })}
+          />
           <Route
             path={destinationLink + "/*"}
-            element={Destination({ destinations: spaceData.destinations })}
+            element={Destination({
+              destinations: spaceData.destinations,
+              setDestinationTab: setDestinationTab,
+            })}
           />
           <Route
             path={crewLink + "/*"}
-            element={Crew({ crewMembers: spaceData.crew })}
+            element={Crew({
+              crewMembers: spaceData.crew,
+              setCrewTab: setCrewTab,
+            })}
           />
           <Route
             path={technologyLink + "/*"}
-            element={Technology({ technologies: spaceData.technology })}
+            element={Technology({
+              technologies: spaceData.technology,
+              setTechTab: setTechTab,
+            })}
           />
         </Routes>
       </div>

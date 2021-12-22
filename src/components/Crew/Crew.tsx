@@ -10,9 +10,13 @@ import { CrewMemberType } from "../../models/CrewMemberType";
 
 interface CrewProps {
   crewMembers: CrewMemberType[];
+  setCrewTab: (tab: string) => void;
 }
 
-export default function Crew({ crewMembers }: CrewProps): ReactElement {
+export default function Crew({
+  crewMembers,
+  setCrewTab,
+}: CrewProps): ReactElement {
   const defaultCrewMember = crewMembers[0];
   const defaultName = convertToValidRoute(defaultCrewMember.name);
 
@@ -26,9 +30,11 @@ export default function Crew({ crewMembers }: CrewProps): ReactElement {
   const { images } = currentDestination;
 
   const navOptions: NavigationOption[] = crewMembers.map((crewMember) => {
+    const validRoute = convertToValidRoute(crewMember.name);
     return {
       label: crewMember.name.toUpperCase(),
-      linkPath: `${convertToValidRoute(crewMember.name)}`,
+      linkPath: validRoute,
+      setSelectedTab: () => setCrewTab(validRoute),
     };
   });
 

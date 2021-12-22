@@ -2,9 +2,13 @@ import style from "./Home.module.scss";
 
 import React, { ReactElement } from "react";
 
-interface HomeProps {}
+import { ExploreButton } from "./ExploreButton/ExploreButton";
 
-export default function Home({}: HomeProps): ReactElement {
+interface HomeProps {
+  exploreButtonLink: string;
+}
+
+export default function Home({ exploreButtonLink }: HomeProps): ReactElement {
   return (
     <div className={style.home}>
       <div className={style.intro}>
@@ -17,9 +21,7 @@ export default function Home({}: HomeProps): ReactElement {
           experience!
         </p>
       </div>
-      <button className={style.exploreButton}>
-        <h4>Explore</h4>
-      </button>
+      <ExploreButton navigationLink={exploreButtonLink} />
     </div>
   );
 }

@@ -1,6 +1,10 @@
 @import "../../shared-styles.scss";
 
+$star-image-size: 60px;
+
 .header {
+  position: relative;
+
   width: 100%;
 
   display: flex;
@@ -8,23 +12,35 @@
 
   justify-content: space-between;
   align-items: center;
+}
 
-  $headerPadding: 40px;
-  padding: $headerPadding 0px 0px $headerPadding;
+.crossingLine {
+  position: absolute;
 
+  top: 50%;
+  left: 15%;
+  width: calc(45% - 15%);
+  
+  border: 1px solid $dark-gray-color;
+
+  z-index: 1;
 }
 
 .starImage {
-  $star-image-size: 60px;
   width: $star-image-size;
   height: $star-image-size;
+
+  margin-left: calc((20vh - $star-image-size) / 2);
+}
+
+.starImage:hover {
+  cursor: pointer;
 }
 
 .navigation {
   height: 100px;
-  width: 70%;
+  width: 60%;
   padding: 0px 100px;
-
 
   backdrop-filter: blur(35px);
 }

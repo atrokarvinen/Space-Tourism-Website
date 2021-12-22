@@ -12,9 +12,12 @@ export default function LinkItem({
   link,
   children,
 }: LinkItemProps): ReactElement {
+  const selectedSubTab = link.selectedSubTab ? "/" + link.selectedSubTab : "";
   return (
     <li>
-      <Link to={link.linkPath}>{children}</Link>
+      <Link to={link.linkPath + selectedSubTab} onClick={link.setSelectedTab}>
+        {children}
+      </Link>
     </li>
   );
 }

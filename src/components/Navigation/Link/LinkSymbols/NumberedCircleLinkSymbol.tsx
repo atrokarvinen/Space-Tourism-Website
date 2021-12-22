@@ -1,4 +1,4 @@
-import style from "../../Navigation.module.scss";
+import style from "./LinkSymbolStyles.module.scss";
 
 export interface NumberedCircleLinkSymbolProps {
   isActive: boolean;
