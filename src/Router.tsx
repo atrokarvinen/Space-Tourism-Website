@@ -25,15 +25,27 @@ export default function Router() {
   const locationPath = location.pathname;
 
   const getBackgroundImageUrl = (location: string): string | undefined => {
+    // switch (location) {
+    //   case homeLink:
+    //     return "/assets/home/background-home-desktop.jpg";
+    //   case destinationLink:
+    //     return "/assets/destination/background-destination-desktop.jpg";
+    //   case crewLink:
+    //     return "/assets/crew/background-crew-desktop.jpg";
+    //   case technologyLink:
+    //     return "/assets/technology/background-technology-desktop.jpg";
+    //   default:
+    //     return undefined;
+    // }
     switch (location) {
       case homeLink:
-        return "/assets/home/background-home-desktop.jpg";
+        return "/assets/home/background-home-mobile.jpg";
       case destinationLink:
-        return "/assets/destination/background-destination-desktop.jpg";
+        return "/assets/destination/background-destination-mobile.jpg";
       case crewLink:
-        return "/assets/crew/background-crew-desktop.jpg";
+        return "/assets/crew/background-crew-mobile.jpg";
       case technologyLink:
-        return "/assets/technology/background-technology-desktop.jpg";
+        return "/assets/technology/background-technology-mobile.jpg";
       default:
         return undefined;
     }

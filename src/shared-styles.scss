@@ -76,3 +76,15 @@ p {
   font-family: $font-family-condensed;
   letter-spacing: 2.7px;
 }
+
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 100px;
+  }
+
+  h5 {
+    font-size: 20px;
+    letter-spacing: 0;
+  }
+}

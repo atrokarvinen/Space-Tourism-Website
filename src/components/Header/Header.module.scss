@@ -19,8 +19,8 @@ $star-image-size: 60px;
 
   top: 50%;
   left: 15%;
-  width: calc(45% - 15%);
-  
+  width: calc(45% - 15% - $star-image-size);
+
   border: 1px solid $dark-gray-color;
 
   z-index: 1;
@@ -40,7 +40,21 @@ $star-image-size: 60px;
 .navigation {
   height: 100px;
   width: 60%;
+
   padding: 0px 100px;
 
   backdrop-filter: blur(35px);
+}
+
+.hamburger {
+  $hambuger-size: 30px;
+  width: $hambuger-size;
+  height: $hambuger-size;
+  margin-right: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+  .crossingLine {
+    visibility: hidden;
+  }
 }

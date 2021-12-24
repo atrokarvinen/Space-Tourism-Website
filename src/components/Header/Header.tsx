@@ -12,19 +12,24 @@ interface NavigationProps {
 
 export default function Header({ options }: NavigationProps): ReactElement {
   const navigate = useNavigate();
-  
+
   return (
     <div className={style.header}>
-      <div className={style.crossingLine}/>
+      <div className={style.crossingLine} />
       <img
         className={style.starImage}
         src="/assets/shared/logo.svg"
         alt="star logo"
         onClick={() => navigate("/")}
       />
-      <div className={style.navigation}>
+      {/* <div className={style.navigation}>
         <Navigation options={options} displayIndex={true} linkSymbol="text"/>
-      </div>
+      </div> */}
+      <img
+        className={style.hamburger}
+        src="/assets/shared/icon-hamburger.svg"
+        alt="hamburger"
+      />
     </div>
   );
 }

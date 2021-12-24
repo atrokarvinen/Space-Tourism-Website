@@ -22,3 +22,26 @@
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .home {
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "intro"
+      "exploreButton";
+
+    text-align: center;
+
+    .intro {
+      width: 100%;
+
+      p {
+        text-align: center;
+      }
+    }
+  }
+}
