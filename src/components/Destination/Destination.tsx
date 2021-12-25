@@ -1,29 +1,26 @@
 import style from "./Destination.module.scss";
 
-import React, { ReactElement } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import React, { ReactElement, useState } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import { DestinationType } from "../../models/DestinationType";
 import Navigation from "../Navigation/Navigation";
 import NavigationOption from "../Navigation/NavigationOption";
-import { convertToValidRoute, getLastLink } from "../../services/RouteHelper";
+import { convertToValidRoute } from "../../services/RouteHelper";
 
 interface DestinationProps {
   destinations: DestinationType[];
-  setDestinationTab: (tab: string) => void;
 }
 
 export default function Destination({
   destinations,
-  setDestinationTab,
 }: DestinationProps): ReactElement {
+  const [selectedDestination, setselectedDestination] = useState<
+    DestinationType | undefined
+  >();
+
   const defaultDestination = destinations[0];
   const defaultName = defaultDestination.name.toLowerCase();
-
-  const selectedDestinationName = getLastLink(useLocation().pathname);
-  const selectedDestination = destinations.find(
-    (destination) => destination.name.toLowerCase() === selectedDestinationName
-  );
 
   const currentDestination = selectedDestination ?? defaultDestination;
   const { images } = currentDestination;
@@ -33,7 +30,7 @@ export default function Destination({
     return {
       label: destination.name.toUpperCase(),
       linkPath: validLinkName,
-      setSelectedTab: () => setDestinationTab(validLinkName),
+      onClick: () => setselectedDestination(destination),
     };
   });
 

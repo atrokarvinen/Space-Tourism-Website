@@ -43,7 +43,7 @@
     align-self: flex-start;
     flex: 1 0;
     max-width: 500px;
-    
+
     text-align: justify;
   }
 
@@ -68,5 +68,30 @@
 }
 
 .name {
-  margin: 0; 
+  margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .crew {
+    // justify-items: center;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr 35%;
+    grid-template-areas:
+      "caption"
+      "crewMembers"
+      "crewImage";
+  }
+
+  .crewImage {
+    justify-self: center;
+  }
+
+  .crewMembers {
+    .navigation {
+      flex-grow: 0;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
 }

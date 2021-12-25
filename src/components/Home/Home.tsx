@@ -5,10 +5,12 @@ import React, { ReactElement } from "react";
 import { ExploreButton } from "./ExploreButton/ExploreButton";
 
 interface HomeProps {
-  exploreButtonLink: string;
+  exploreButtonOnClick: () => void;
 }
 
-export default function Home({ exploreButtonLink }: HomeProps): ReactElement {
+export default function Home({
+  exploreButtonOnClick,
+}: HomeProps): ReactElement {
   return (
     <div className={style.home}>
       <div className={style.intro}>
@@ -21,7 +23,7 @@ export default function Home({ exploreButtonLink }: HomeProps): ReactElement {
           experience!
         </p>
       </div>
-      <ExploreButton navigationLink={exploreButtonLink} />
+      <ExploreButton onClick={exploreButtonOnClick} />
     </div>
   );
 }

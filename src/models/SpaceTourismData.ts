@@ -3,7 +3,7 @@ import { DestinationType } from "./DestinationType";
 import { TechnologyType } from "./TechnologyType";
 
 export interface SpaceTourismData {
-  destinations: DestinationType[];
+  destination: DestinationType[];
   crew: CrewMemberType[];
   technology: TechnologyType[];
 }

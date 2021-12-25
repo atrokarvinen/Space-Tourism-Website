@@ -8,7 +8,7 @@ it("reads data.json file", () => {
 });
 
 it("has correct amount of destinations", () => {
-  expect(data.destinations).toHaveLength(4);
+  expect(data.destination).toHaveLength(4);
 });
 
 it("has correct amount of crew members", () => {
@@ -20,7 +20,7 @@ it("has correct amount of tech", () => {
 });
 
 it("reads destination correctly", () => {
-  const destination = data.destinations[0];
+  const destination = data.destination[0];
   expect(destination).not.toBeUndefined();
   expect(destination.description).not.toBeUndefined();
   expect(destination.distance).not.toBeUndefined();

@@ -67,3 +67,32 @@
     grid-template-rows: 1fr 1fr;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .technology {
+    padding-bottom: 0;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "caption"
+      "technologyImage"
+      "technologies";
+  }
+
+  .technologies {
+    margin-top: 10px;
+
+    .navigation {
+      height: 90%;
+      width: 100px;
+      flex: 0;
+    }
+
+    .content {
+      padding: 0;
+      padding-left: 10px;
+    }
+  }
+}

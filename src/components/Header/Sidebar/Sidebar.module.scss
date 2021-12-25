@@ -1,0 +1,28 @@
+.sidebar {
+  position: absolute;
+
+  top: 0;
+  left: 40%;
+  width: 60%;
+  height: 500%;
+  padding-left: 10%;
+
+  display: flex;
+  flex-direction: column;
+
+  backdrop-filter: blur(35px);
+
+  z-index: 100;
+}
+
+.closeButton {
+  height: 50px;
+  width: 50px;
+
+  align-self: flex-end;
+}
+
+.navigation {
+  height: 40%;
+  padding-top: 20px;
+}

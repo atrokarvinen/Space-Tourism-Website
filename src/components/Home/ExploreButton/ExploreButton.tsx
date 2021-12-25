@@ -1,16 +1,12 @@
 import style from "./ExploreButton.module.scss";
 
-import * as React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 interface ExploreButtonProps {
-  navigationLink: string;
+  onClick: () => void;
 }
 
-export function ExploreButton({ navigationLink }: ExploreButtonProps) {
-  const navigate = useNavigate();
-
+export function ExploreButton({ onClick }: ExploreButtonProps) {
   const [isExploreBackgroundVisible, setIsExploreBackgroundVisible] =
     useState(false);
 
@@ -25,7 +21,7 @@ export function ExploreButton({ navigationLink }: ExploreButtonProps) {
         className={style.exploreButton}
         onMouseOver={() => setIsExploreBackgroundVisible(true)}
         onMouseLeave={() => setIsExploreBackgroundVisible(false)}
-        onClick={() => navigate(navigationLink)}
+        onClick={onClick}
       >
         <h4>Explore</h4>
       </button>

@@ -1,31 +1,29 @@
 import style from "./Technology.module.scss";
 
-import React, { ReactElement } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import React, { ReactElement, useState } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import Navigation from "../Navigation/Navigation";
 import NavigationOption from "../Navigation/NavigationOption";
-import { convertToValidRoute, getLastLink } from "../../services/RouteHelper";
+import { convertToValidRoute } from "../../services/RouteHelper";
 import { TechnologyType } from "../../models/TechnologyType";
+import { isMobile } from "react-device-detect";
 
 interface TechnologyProps {
   technologies: TechnologyType[];
-  setTechTab: (tab: string) => void;
 }
 
 export default function Technology({
   technologies,
-  setTechTab,
 }: TechnologyProps): ReactElement {
+  const [selectedTech, setSelectedTech] = useState<
+    TechnologyType | undefined
+  >();
+
   const defaultTechnology = technologies[0];
   const defaultName = convertToValidRoute(defaultTechnology.name);
 
-  const selectedTechName = getLastLink(useLocation().pathname);
-  const selectedCrewMember = technologies.find(
-    (tech) => convertToValidRoute(tech.name) === selectedTechName
-  );
-
-  const currentDestination = selectedCrewMember ?? defaultTechnology;
+  const currentDestination = selectedTech ?? defaultTechnology;
   const { images } = currentDestination;
 
   const navOptions: NavigationOption[] = technologies.map((tech) => {
@@ -33,11 +31,12 @@ export default function Technology({
     return {
       label: tech.name.toUpperCase(),
       linkPath: validRoute,
-      setSelectedTab: () => setTechTab(validRoute),
+      onClick: () => setSelectedTech(tech),
     };
   });
 
-  const trimmedImagePath = images.portrait.replace(".", "");
+  const imageUrl = isMobile ? images.landscape : images.portrait;
+  const trimmedImagePath = imageUrl.replace(".", "");
 
   return (
     <div className={style.technology}>

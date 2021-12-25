@@ -1,30 +1,23 @@
 import style from "./Crew.module.scss";
 
-import React, { ReactElement } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import React, { ReactElement, useState } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import Navigation from "../Navigation/Navigation";
 import NavigationOption from "../Navigation/NavigationOption";
-import { convertToValidRoute, getLastLink } from "../../services/RouteHelper";
+import { convertToValidRoute } from "../../services/RouteHelper";
 import { CrewMemberType } from "../../models/CrewMemberType";
 
 interface CrewProps {
   crewMembers: CrewMemberType[];
-  setCrewTab: (tab: string) => void;
 }
 
-export default function Crew({
-  crewMembers,
-  setCrewTab,
-}: CrewProps): ReactElement {
+export default function Crew({ crewMembers }: CrewProps): ReactElement {
+  const [selectedCrewMember, setSelectedCrewMember] = useState<
+    CrewMemberType | undefined
+  >();
   const defaultCrewMember = crewMembers[0];
   const defaultName = convertToValidRoute(defaultCrewMember.name);
-
-  const selectedCrewMemberName = getLastLink(useLocation().pathname);
-  const selectedCrewMember = crewMembers.find(
-    (crewMember) =>
-      convertToValidRoute(crewMember.name) === selectedCrewMemberName
-  );
 
   const currentDestination = selectedCrewMember ?? defaultCrewMember;
   const { images } = currentDestination;
@@ -34,7 +27,7 @@ export default function Crew({
     return {
       label: crewMember.name.toUpperCase(),
       linkPath: validRoute,
-      setSelectedTab: () => setCrewTab(validRoute),
+      onClick: () => setSelectedCrewMember(crewMember),
     };
   });
 

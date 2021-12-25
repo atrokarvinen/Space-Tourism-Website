@@ -1,100 +1,62 @@
 import style from "./Router.module.scss";
 
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 import Crew from "./components/Crew/Crew";
 import Destination from "./components/Destination/Destination";
 import Home from "./components/Home/Home";
 import Technology from "./components/Technology/Technology";
 import NavigationOption from "./components/Navigation/NavigationOption";
-import { DataProvider } from "./services/DataProvider";
 import Header from "./components/Header/Header";
-import { useState } from "react";
+import { SpaceTourismData } from "./models/SpaceTourismData";
 
-export default function Router() {
-  const [destinationTab, setDestinationTab] = useState<string | undefined>();
-  const [crewTab, setCrewTab] = useState<string | undefined>();
-  const [techTab, setTechTab] = useState<string | undefined>();
+interface RouterProps {
+  navOptions: NavigationOption[];
+  spaceData: SpaceTourismData;
+  bgUrl: string;
+}
 
-  const homeLink = "/";
-  const destinationLink = "/destination";
-  const crewLink = "/crew";
-  const technologyLink = "/technology";
+export default function Router({ navOptions, spaceData, bgUrl }: RouterProps) {
+  const navigate = useNavigate();
 
-  const location = useLocation();
-  const locationPath = location.pathname;
-
-  const getBackgroundImageUrl = (location: string): string | undefined => {
-    // switch (location) {
-    //   case homeLink:
-    //     return "/assets/home/background-home-desktop.jpg";
-    //   case destinationLink:
-    //     return "/assets/destination/background-destination-desktop.jpg";
-    //   case crewLink:
-    //     return "/assets/crew/background-crew-desktop.jpg";
-    //   case technologyLink:
-    //     return "/assets/technology/background-technology-desktop.jpg";
-    //   default:
-    //     return undefined;
-    // }
-    switch (location) {
-      case homeLink:
-        return "/assets/home/background-home-mobile.jpg";
-      case destinationLink:
-        return "/assets/destination/background-destination-mobile.jpg";
-      case crewLink:
-        return "/assets/crew/background-crew-mobile.jpg";
-      case technologyLink:
-        return "/assets/technology/background-technology-mobile.jpg";
-      default:
-        return undefined;
-    }
-  };
-
-  const bgUrl = getBackgroundImageUrl("/" + locationPath.split("/")[1]);
-
-  const navOptions: NavigationOption[] = [
-    { label: "HOME", linkPath: homeLink },
-    {
-      label: "DESTINATION",
-      linkPath: destinationLink,
-      selectedSubTab: destinationTab,
-    },
-    { label: "CREW", linkPath: crewLink, selectedSubTab: crewTab },
-    { label: "TECHNOLOGY", linkPath: technologyLink, selectedSubTab: techTab },
-  ];
-
-  const spaceDataProvider = new DataProvider();
-  const spaceData = spaceDataProvider.getSpaceTourismData();
-
+  const homeLink = navOptions[0];
+  const destinationLink = navOptions[1];
   return (
     <div className={style.layout} style={{ backgroundImage: `url(${bgUrl}` }}>
-      <Header options={navOptions} />
+      <Header
+        navigationOptions={navOptions}
+        logoClick={() => {
+          homeLink.onClick();
+          navigate(homeLink.linkPath);
+        }}
+      />
       <div className={style.content}>
         <Routes>
           <Route
-            path={homeLink}
-            element={Home({ exploreButtonLink: destinationLink })}
-          />
-          <Route
-            path={destinationLink + "/*"}
-            element={Destination({
-              destinations: spaceData.destinations,
-              setDestinationTab: setDestinationTab,
+            path={navOptions[0].linkPath}
+            element={Home({
+              exploreButtonOnClick: () => {
+                destinationLink.onClick();
+                navigate(destinationLink.linkPath);
+              },
             })}
           />
           <Route
-            path={crewLink + "/*"}
+            path={destinationLink.linkPath + "/*"}
+            element={Destination({
+              destinations: spaceData.destination,
+            })}
+          />
+          <Route
+            path={navOptions[2].linkPath + "/*"}
             element={Crew({
               crewMembers: spaceData.crew,
-              setCrewTab: setCrewTab,
             })}
           />
           <Route
-            path={technologyLink + "/*"}
+            path={navOptions[3].linkPath + "/*"}
             element={Technology({
               technologies: spaceData.technology,
-              setTechTab: setTechTab,
             })}
           />
         </Routes>

@@ -29,6 +29,10 @@ $diameter: 200px;
   z-index: 1;
 }
 
+.exploreButton:hover {
+  cursor: pointer;
+}
+
 .blurElement {
   width: $diameter;
   height: $diameter;
