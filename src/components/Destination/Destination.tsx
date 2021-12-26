@@ -34,14 +34,14 @@ export default function Destination({
     };
   });
 
-  const trimmedImagePath = images.png.replace(".", "");
+  const publicImagePath = images.png.replace(".", process.env.PUBLIC_URL);
 
   return (
     <div className={style.destination}>
       <h4 className={style.caption}>01 PICK YOUR DESTINATION</h4>
       <img
         className={style.destinationImage}
-        src={trimmedImagePath}
+        src={publicImagePath}
         alt="destination planet"
       />
       <div className={style.destinations}>

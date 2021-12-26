@@ -31,14 +31,14 @@ export default function Crew({ crewMembers }: CrewProps): ReactElement {
     };
   });
 
-  const trimmedImagePath = images.png.replace(".", "");
+  const publicImagePath = images.png.replace(".", process.env.PUBLIC_URL);
 
   return (
     <div className={style.crew}>
       <h4 className={style.caption}>02 MEET YOUR CREW</h4>
       <img
         className={style.crewImage}
-        src={trimmedImagePath}
+        src={publicImagePath}
         alt="crew member"
       />
       <div className={style.crewMembers}>

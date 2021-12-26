@@ -26,9 +26,12 @@ export default function Sidebar({
 
   return (
     <div className={style.sidebar}>
-      <button className={style.closeButton} onClick={onClose}>
-        X
-      </button>
+      <img
+        src={`${process.env.PUBLIC_URL}/assets/shared/icon-close.svg`}
+        alt="close logo"
+        className={style.closeButton}
+        onClick={onClose}
+      />
       <div className={style.navigation}>
         <Navigation
           options={mobileOptions}

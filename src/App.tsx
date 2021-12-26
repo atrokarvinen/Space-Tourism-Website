@@ -9,7 +9,7 @@ export default function App() {
   const [backgroungImg, setBackgroungImg] = useState<string | undefined>();
 
   const deviceType = isMobile ? "mobile" : "desktop";
-  const homeImage = `/assets/home/background-home-${deviceType}.jpg`;
+  const homeImage = `${process.env.PUBLIC_URL}/assets/home/background-home-${deviceType}.jpg`;
 
   const getLinks = (spaceData: SpaceTourismData): NavigationOption[] => {
     const tabs: NavigationOption[] = [];
@@ -20,7 +20,7 @@ export default function App() {
     };
 
     const dataTabs = Object.keys(spaceData).map((name) => {
-      const bgImage = `/assets/${name}/background-${name}-${deviceType}.jpg`;
+      const bgImage = `${process.env.PUBLIC_URL}/assets/${name}/background-${name}-${deviceType}.jpg`;
       return {
         linkPath: `/${name}`,
         label: name.toUpperCase(),

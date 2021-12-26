@@ -36,14 +36,14 @@ export default function Technology({
   });
 
   const imageUrl = isMobile ? images.landscape : images.portrait;
-  const trimmedImagePath = imageUrl.replace(".", "");
+  const publicImagePath = imageUrl.replace(".", process.env.PUBLIC_URL);
 
   return (
     <div className={style.technology}>
       <h4 className={style.caption}>03 SPACE LAUNCH 101</h4>
       <img
         className={style.technologyImage}
-        src={trimmedImagePath}
+        src={publicImagePath}
         alt="technology"
       />
       <div className={style.technologies}>

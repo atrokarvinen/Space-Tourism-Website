@@ -18,8 +18,6 @@ export default function Header({
 }: NavigationProps): ReactElement {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
-  console.log("header update");
-
   return (
     <div className={style.header}>
       {isSidebarVisible ? (
@@ -31,14 +29,14 @@ export default function Header({
       <div className={style.crossingLine} />
       <img
         className={style.starImage}
-        src="/assets/shared/logo.svg"
+        src={`${process.env.PUBLIC_URL}/assets/shared/logo.svg`}
         alt="star logo"
         onClick={logoClick}
       />
       {isMobile ? (
         <img
           className={style.hamburger}
-          src="/assets/shared/icon-hamburger.svg"
+          src={`${process.env.PUBLIC_URL}/assets/shared/icon-hamburger.svg`}
           alt="hamburger"
           onClick={() => setIsSidebarVisible(true)}
         />
