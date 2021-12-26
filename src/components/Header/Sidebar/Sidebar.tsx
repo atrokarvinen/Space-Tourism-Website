@@ -19,7 +19,9 @@ export default function Sidebar({
       ...option,
       onClick: () => {
         onClose();
-        option.onClick();
+        if (option.onClick) {
+          option.onClick();
+        }
       },
     };
   });
@@ -35,8 +37,7 @@ export default function Sidebar({
       <div className={style.navigation}>
         <Navigation
           options={mobileOptions}
-          displayIndex={true}
-          linkSymbol="text"
+          linkSymbol="indexed-text"
           flowDirection="column"
         />
       </div>

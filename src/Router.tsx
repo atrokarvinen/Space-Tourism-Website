@@ -1,6 +1,6 @@
 import style from "./Router.module.scss";
 
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
 import Crew from "./components/Crew/Crew";
 import Destination from "./components/Destination/Destination";
@@ -26,17 +26,15 @@ export default function Router({ navOptions, spaceData, bgUrl }: RouterProps) {
       <Header
         navigationOptions={navOptions}
         logoClick={() => {
-          homeLink.onClick();
           navigate(homeLink.linkPath);
         }}
       />
       <div className={style.content}>
         <Routes>
           <Route
-            path={navOptions[0].linkPath}
+            path={homeLink.linkPath}
             element={Home({
               exploreButtonOnClick: () => {
-                destinationLink.onClick();
                 navigate(destinationLink.linkPath);
               },
             })}
@@ -59,6 +57,7 @@ export default function Router({ navOptions, spaceData, bgUrl }: RouterProps) {
               technologies: spaceData.technology,
             })}
           />
+          <Route path="*" element={<Navigate to={homeLink.linkPath} />} />
         </Routes>
       </div>
     </div>

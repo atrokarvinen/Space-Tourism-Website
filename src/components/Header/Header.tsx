@@ -42,11 +42,7 @@ export default function Header({
         />
       ) : (
         <div className={style.navigation}>
-          <Navigation
-            options={navigationOptions}
-            displayIndex={true}
-            linkSymbol="text"
-          />
+          <Navigation options={navigationOptions} linkSymbol="indexed-text" />
         </div>
       )}
     </div>

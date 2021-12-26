@@ -1,13 +1,18 @@
 import style from "./Technology.module.scss";
 
-import React, { ReactElement, useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import React, { ReactElement } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { isMobile } from "react-device-detect";
 
 import Navigation from "../Navigation/Navigation";
 import NavigationOption from "../Navigation/NavigationOption";
-import { convertToValidRoute } from "../../services/RouteHelper";
+import {
+  convertToValidRoute,
+  getCurrentItem,
+  toNavigationOptions,
+} from "../../services/RouteHelper";
 import { TechnologyType } from "../../models/TechnologyType";
-import { isMobile } from "react-device-detect";
+import TechnologyContent from "./TechnologyContent";
 
 interface TechnologyProps {
   technologies: TechnologyType[];
@@ -16,28 +21,17 @@ interface TechnologyProps {
 export default function Technology({
   technologies,
 }: TechnologyProps): ReactElement {
-  const [selectedTech, setSelectedTech] = useState<
-    TechnologyType | undefined
-  >();
+  const location = useLocation();
+  const currentTech: TechnologyType = getCurrentItem(
+    technologies,
+    location.pathname
+  );
 
-  const defaultTechnology = technologies[0];
-  const defaultName = convertToValidRoute(defaultTechnology.name);
-
-  const currentDestination = selectedTech ?? defaultTechnology;
-  const { images } = currentDestination;
-
-  const navOptions: NavigationOption[] = technologies.map((tech) => {
-    const validRoute = convertToValidRoute(tech.name);
-    return {
-      label: tech.name.toUpperCase(),
-      linkPath: validRoute,
-      onClick: () => setSelectedTech(tech),
-    };
-  });
-
+  const { images } = currentTech;
   const imageUrl = isMobile ? images.landscape : images.portrait;
   const publicImagePath = imageUrl.replace(".", process.env.PUBLIC_URL);
 
+  const navOptions: NavigationOption[] = toNavigationOptions(technologies);
   return (
     <div className={style.technology}>
       <h4 className={style.caption}>03 SPACE LAUNCH 101</h4>
@@ -56,25 +50,19 @@ export default function Technology({
         </div>
         <div className={style.content}>
           <Routes>
-            {technologies.map((crewMember: TechnologyType) => {
-              const { name, description } = crewMember;
+            {technologies.map((technology: TechnologyType) => {
               return (
                 <Route
-                  key={crewMember.name}
-                  path={`${convertToValidRoute(crewMember.name)}`}
-                  element={
-                    <>
-                      <span className={style.subHeading2}>
-                        THE TERMINOLOGY...
-                      </span>
-                      <h3>{name.toUpperCase()}</h3>
-                      <p>{description}</p>
-                    </>
-                  }
-                ></Route>
+                  key={technology.name}
+                  path={convertToValidRoute(technology.name)}
+                  element={<TechnologyContent technology={technology} />}
+                />
               );
             })}
-            <Route path="*" element={<Navigate to={`${defaultName}`} />} />
+            <Route
+              path="*"
+              element={<TechnologyContent technology={currentTech} />}
+            />
           </Routes>
         </div>
       </div>

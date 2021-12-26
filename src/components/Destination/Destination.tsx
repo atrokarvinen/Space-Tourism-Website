@@ -1,12 +1,16 @@
 import style from "./Destination.module.scss";
 
-import React, { ReactElement, useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import React, { ReactElement } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 import { DestinationType } from "../../models/DestinationType";
 import Navigation from "../Navigation/Navigation";
 import NavigationOption from "../Navigation/NavigationOption";
-import { convertToValidRoute } from "../../services/RouteHelper";
+import {
+  getCurrentItem,
+  toNavigationOptions,
+} from "../../services/RouteHelper";
+import DestinationContent from "./DestinationContent";
 
 interface DestinationProps {
   destinations: DestinationType[];
@@ -15,26 +19,16 @@ interface DestinationProps {
 export default function Destination({
   destinations,
 }: DestinationProps): ReactElement {
-  const [selectedDestination, setselectedDestination] = useState<
-    DestinationType | undefined
-  >();
+  const location = useLocation();
+  const currentDestination: DestinationType = getCurrentItem(
+    destinations,
+    location.pathname
+  );
 
-  const defaultDestination = destinations[0];
-  const defaultName = defaultDestination.name.toLowerCase();
-
-  const currentDestination = selectedDestination ?? defaultDestination;
   const { images } = currentDestination;
-
-  const navOptions: NavigationOption[] = destinations.map((destination) => {
-    const validLinkName = convertToValidRoute(destination.name);
-    return {
-      label: destination.name.toUpperCase(),
-      linkPath: validLinkName,
-      onClick: () => setselectedDestination(destination),
-    };
-  });
-
   const publicImagePath = images.png.replace(".", process.env.PUBLIC_URL);
+
+  const navOptions: NavigationOption[] = toNavigationOptions(destinations);
 
   return (
     <div className={style.destination}>
@@ -50,35 +44,18 @@ export default function Destination({
         </div>
         <Routes>
           {destinations.map((destination) => {
-            const { name, description, distance, travel } = destination;
             return (
               <Route
                 key={destination.name}
-                path={`${destination.name.toLowerCase()}`}
-                element={
-                  <>
-                    <h2>{name.toUpperCase()}</h2>
-                    <p>{description}</p>
-                    <div className={style.separationLine} />
-
-                    <div className={style.destinationStatistics}>
-                      <span className={style.subHeading2}>AVG. DISTANCE</span>
-                      <span className={style.subHeading2}>
-                        EST. TRAVEL TIME
-                      </span>
-                      <span className={style.subHeading1}>
-                        {distance.toUpperCase()}
-                      </span>
-                      <span className={style.subHeading1}>
-                        {travel.toUpperCase()}
-                      </span>
-                    </div>
-                  </>
-                }
-              ></Route>
+                path={destination.name.toLowerCase()}
+                element={<DestinationContent destination={destination} />}
+              />
             );
           })}
-          <Route path="*" element={<Navigate to={`${defaultName}`} />} />
+          <Route
+            path="*"
+            element={<DestinationContent destination={currentDestination} />}
+          />
         </Routes>
       </div>
     </div>
