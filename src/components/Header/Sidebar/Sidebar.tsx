@@ -3,6 +3,7 @@ import style from "./Sidebar.module.scss";
 import React, { ReactElement } from "react";
 import Navigation from "../../Navigation/Navigation";
 import NavigationOption from "../../Navigation/NavigationOption";
+import { isMobile } from "react-device-detect";
 
 interface SidebarProps {
   isVisible: boolean;
@@ -14,7 +15,11 @@ export default function Sidebar({
   isVisible,
   onClose,
   navigationOptions,
-}: SidebarProps): ReactElement {
+}: SidebarProps): ReactElement | null {
+  if (!isMobile) {
+    return null;
+  }
+
   // Add incovation of onClose to all link clicks to close sidebar whenever link is clicked.
   const mobileOptions = navigationOptions.map((option) => {
     return {

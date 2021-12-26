@@ -14,7 +14,7 @@ export default function App() {
     const tabs: NavigationOption[] = [];
     const home: NavigationOption = {
       label: "HOME",
-      linkPath: "/",
+      linkPath: "/Space-Tourism-Website",
     };
 
     const dataTabs = Object.keys(spaceData).map((name, index) => {
