@@ -20,12 +20,11 @@ export default function Header({
 
   return (
     <div className={style.header}>
-      {isSidebarVisible ? (
-        <Sidebar
-          onClose={() => setIsSidebarVisible(false)}
-          navigationOptions={navigationOptions}
-        />
-      ) : null}
+      <Sidebar
+        isVisible={isSidebarVisible}
+        onClose={() => setIsSidebarVisible(false)}
+        navigationOptions={navigationOptions}
+      />
       <div className={style.crossingLine} />
       <img
         className={style.starImage}

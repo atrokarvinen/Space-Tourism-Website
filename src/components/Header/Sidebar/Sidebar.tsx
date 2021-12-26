@@ -5,11 +5,13 @@ import Navigation from "../../Navigation/Navigation";
 import NavigationOption from "../../Navigation/NavigationOption";
 
 interface SidebarProps {
+  isVisible: boolean;
   onClose: () => void;
   navigationOptions: NavigationOption[];
 }
 
 export default function Sidebar({
+  isVisible,
   onClose,
   navigationOptions,
 }: SidebarProps): ReactElement {
@@ -26,8 +28,10 @@ export default function Sidebar({
     };
   });
 
+  const visibilityStyle = isVisible ? style.visible : undefined;
+
   return (
-    <div className={style.sidebar}>
+    <div className={`${style.sidebar} ${visibilityStyle}`}>
       <img
         src={`${process.env.PUBLIC_URL}/assets/shared/icon-close.svg`}
         alt="close logo"
