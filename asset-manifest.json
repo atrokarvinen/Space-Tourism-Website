@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Space-Tourism-Website/static/css/main.94a825c6.css",
-    "main.js": "/Space-Tourism-Website/static/js/main.d6c4a844.js",
+    "main.css": "/Space-Tourism-Website/static/css/main.9d441d85.css",
+    "main.js": "/Space-Tourism-Website/static/js/main.cfe9bea6.js",
     "static/js/787.5f85d802.chunk.js": "/Space-Tourism-Website/static/js/787.5f85d802.chunk.js",
     "index.html": "/Space-Tourism-Website/index.html",
-    "main.94a825c6.css.map": "/Space-Tourism-Website/static/css/main.94a825c6.css.map",
-    "main.d6c4a844.js.map": "/Space-Tourism-Website/static/js/main.d6c4a844.js.map",
+    "main.9d441d85.css.map": "/Space-Tourism-Website/static/css/main.9d441d85.css.map",
+    "main.cfe9bea6.js.map": "/Space-Tourism-Website/static/js/main.cfe9bea6.js.map",
     "787.5f85d802.chunk.js.map": "/Space-Tourism-Website/static/js/787.5f85d802.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.94a825c6.css",
-    "static/js/main.d6c4a844.js"
+    "static/css/main.9d441d85.css",
+    "static/js/main.cfe9bea6.js"
   ]
 }
