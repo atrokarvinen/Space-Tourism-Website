@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `"<h4 class=\\"role\\">CAPTAIN</h4><h3 class=\\"name\\">JOHN DOE</h3><p>fancy biography</p>"`;

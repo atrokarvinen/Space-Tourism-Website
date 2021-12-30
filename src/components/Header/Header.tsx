@@ -8,23 +8,21 @@ import Navigation from "../Navigation/Navigation";
 import Sidebar from "./Sidebar/Sidebar";
 
 interface NavigationProps {
+  isSidebarVisible: boolean;
+  setIsSidebarVisible: (isVisible: boolean) => void;
+
   navigationOptions: NavigationOption[];
   logoClick: () => void;
 }
 
 export default function Header({
+  isSidebarVisible,
+  setIsSidebarVisible,
   navigationOptions,
   logoClick,
 }: NavigationProps): ReactElement {
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-
   return (
     <div className={style.header}>
-      <Sidebar
-        isVisible={isSidebarVisible}
-        onClose={() => setIsSidebarVisible(false)}
-        navigationOptions={navigationOptions}
-      />
       <div className={style.crossingLine} />
       <img
         className={style.starImage}
